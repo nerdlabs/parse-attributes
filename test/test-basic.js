@@ -54,5 +54,12 @@ describe('parseAttributes utility', function () {
                 assert.propertyVal(returnVal, 'foo', 'bar');
             });
         });
+
+        describe('with a spinal-case attribute', function(){
+            it('should return an object with corresponding camelCase key', function () {
+                var returnVal = parseAttributes('foo-bar="foobar"');
+                assert.propertyVal(returnVal, 'fooBar', 'foobar');
+            });
+        });
     });
 });
