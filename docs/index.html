@@ -1,0 +1,72 @@
+<!doctype html>
+<head>
+    <title>parse-attributes documentation</title>
+</head>
+<body>
+    <section class="suite">
+      <h1>parseAttributes utility</h1>
+      <dl>
+        <section class="suite">
+          <h1>when called with an empty string</h1>
+          <dl>
+            <dt>should return an empty object</dt>
+            <dd><pre><code>var returnVal = parseAttributes('');
+assert.deepEqual(returnVal, {});</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>when called with a string containing an empty attribute</h1>
+          <dl>
+            <dt>should return an object containing the attribute key with value `true`</dt>
+            <dd><pre><code>var returnVal = parseAttributes('foo');
+assert.propertyVal(returnVal, 'foo', true);</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>when called with a string containing attributes</h1>
+          <dl>
+            <section class="suite">
+              <h1>without quotes</h1>
+              <dl>
+                <dt>should return an corresponding object</dt>
+                <dd><pre><code>var returnVal = parseAttributes('foo=bar');
+assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>with single quotes</h1>
+              <dl>
+                <dt>should return an corresponding object</dt>
+                <dd><pre><code>var returnVal = parseAttributes('foo=\'bar\'');
+assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>with double quotes</h1>
+              <dl>
+                <dt>should return an corresponding object</dt>
+                <dd><pre><code>var returnVal = parseAttributes('foo=&quot;bar&quot;');
+assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>with spaces between delimeters</h1>
+              <dl>
+                <dt>should return an corresponding object</dt>
+                <dd><pre><code>var returnVal = parseAttributes(' foo = &quot;bar&quot; ');
+assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>without spaces between delimeters</h1>
+              <dl>
+                <dt>should return an corresponding object</dt>
+                <dd><pre><code>var returnVal = parseAttributes(' foo=&quot;bar&quot; ');
+assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
+              </dl>
+            </section>
+          </dl>
+        </section>
+      </dl>
+    </section>
+</body>
