@@ -1,0 +1,39 @@
+{
+  "name": "parse-attributes",
+  "version": "0.0.1",
+  "description": "Parse attributes from xmlish strings like a boss",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "npm run test-spec && npm run test-coverage",
+    "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly test/test-*.js"
+  },
+  "author": {
+    "name": "DOM2WG",
+    "email": "dom2wg@nerdlabs.it"
+  },
+  "contributors": [
+    {
+      "name": "Bjoern Brauer",
+      "email": "zaubernerd@zaubernerd.de"
+    },
+    {
+      "name": "Mario Nebl",
+      "email": "hello@mario-nebl.de"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nerdlabs/parse-attributes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nerdlabs/parse-attributes/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/nerdlabs/parse-attributes",
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.2",
+    "mocha": "^1.21.4"
+  }
+}
