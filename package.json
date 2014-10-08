@@ -7,7 +7,8 @@
     "test": "npm run test-spec && npm run test-coverage",
     "test-doc": "./node_modules/.bin/mocha -R doc test/test-*.js | cat docs/_begin.html - docs/_end.html > docs/index.html",
     "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly test/test-*.js",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "install-hooks": "cp ./hooks/* ./.git/hooks/"
   },
   "author": {
     "name": "DOM2WG",
