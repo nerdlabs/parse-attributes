@@ -4,7 +4,7 @@
 </head>
 <body>
     <section class="suite">
-      <h1>parseAttributes utility</h1>
+      <h1>parseAttributes function</h1>
       <dl>
         <section class="suite">
           <h1>when called with an empty string</h1>
@@ -15,7 +15,7 @@ assert.deepEqual(returnVal, {});</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
-          <h1>when called with a string containing an empty attribute</h1>
+          <h1>when called with a string containing a boolean attribute</h1>
           <dl>
             <dt>should return an object containing the attribute key with value `true`</dt>
             <dd><pre><code>var returnVal = parseAttributes('foo');
@@ -23,12 +23,12 @@ assert.propertyVal(returnVal, 'foo', true);</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
-          <h1>when called with a string containing attributes</h1>
+          <h1>when called with a string containing one attribute</h1>
           <dl>
             <section class="suite">
               <h1>without quotes</h1>
               <dl>
-                <dt>should return an corresponding object</dt>
+                <dt>should return a corresponding object</dt>
                 <dd><pre><code>var returnVal = parseAttributes('foo=bar');
 assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
               </dl>
@@ -36,7 +36,7 @@ assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
             <section class="suite">
               <h1>with single quotes</h1>
               <dl>
-                <dt>should return an corresponding object</dt>
+                <dt>should return a corresponding object</dt>
                 <dd><pre><code>var returnVal = parseAttributes('foo=\'bar\'');
 assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
               </dl>
@@ -44,7 +44,7 @@ assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
             <section class="suite">
               <h1>with double quotes</h1>
               <dl>
-                <dt>should return an corresponding object</dt>
+                <dt>should return a corresponding object</dt>
                 <dd><pre><code>var returnVal = parseAttributes('foo=&quot;bar&quot;');
 assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
               </dl>
@@ -52,17 +52,55 @@ assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
             <section class="suite">
               <h1>with spaces between delimeters</h1>
               <dl>
-                <dt>should return an corresponding object</dt>
+                <dt>should return a corresponding object</dt>
                 <dd><pre><code>var returnVal = parseAttributes(' foo = &quot;bar&quot; ');
 assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
               </dl>
             </section>
             <section class="suite">
-              <h1>without spaces between delimeters</h1>
+              <h1>with leading and trailing spaces</h1>
               <dl>
-                <dt>should return an corresponding object</dt>
+                <dt>should return a corresponding object</dt>
                 <dd><pre><code>var returnVal = parseAttributes(' foo=&quot;bar&quot; ');
 assert.propertyVal(returnVal, 'foo', 'bar');</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>with a spinal-case attribute</h1>
+              <dl>
+                <dt>should return an object with corresponding camelCase key</dt>
+                <dd><pre><code>var returnVal = parseAttributes('foo-bar=&quot;foobar&quot;');
+assert.propertyVal(returnVal, 'fooBar', 'foobar');</code></pre></dd>
+              </dl>
+            </section>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>when called with a string containing multiple boolean attributes</h1>
+          <dl>
+            <dt>should return an object with all boolean attributes set to `true`</dt>
+            <dd><pre><code>var returnVal = parseAttributes('foo bar baz');
+assert.deepEqual(Object.keys(returnVal), ['foo', 'bar', 'baz']);</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>when called with a string containing multiple attributes</h1>
+          <dl>
+            <dt>should return a corresponding object</dt>
+            <dd><pre><code>var returnVal = parseAttributes('foo=&quot;1&quot; bar=2 baz=&quot;3&quot;');
+assert.deepEqual(returnVal, { foo: '1', bar: '2', baz: '3' });</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>invalid examples</h1>
+          <dl>
+            <section class="suite">
+              <h1>JSON in attribute value</h1>
+              <dl>
+                <dt>breaks and does not respect escaped quotes</dt>
+                <dd><pre><code>var returnVal = parseAttributes('foo=&quot;{\&quot;name\&quot;:\&quot;bar\&quot;}&quot;');
+assert.notDeepEqual(returnVal, { foo: '{&quot;name&quot;:&quot;bar&quot;}' }, 'output is not as expected');
+assert.equal(returnVal.foo, '{', 'foo contains only opening brace');</code></pre></dd>
               </dl>
             </section>
           </dl>
