@@ -35,7 +35,7 @@ As soon as the same type of quote as the opening quote is found, the parser
 stops and takes takes everything in-between as value. This breaks valid JSON in attribute values.
 
 
-[0]: https://travis-ci.org/nerdlabs/parse-attributes.svg?branch=master
+[0]: https://img.shields.io/travis/nerdlabs/parse-attributes.svg
 [1]: https://travis-ci.org/nerdlabs/parse-attributes
 [2]: https://img.shields.io/coveralls/nerdlabs/parse-attributes.svg
 [3]: https://coveralls.io/r/nerdlabs/parse-attributes?branch=master
