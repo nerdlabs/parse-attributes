@@ -40,4 +40,4 @@ stops and takes takes everything in-between as value. This breaks valid JSON in 
 [2]: https://img.shields.io/coveralls/nerdlabs/parse-attributes.svg
 [3]: https://coveralls.io/r/nerdlabs/parse-attributes?branch=master
 [4]: http://nerdlabs.github.io/parse-attributes/docs/
-[5]: http://visionmedia.github.io/mocha/
+[5]: http://mochajs.org/
